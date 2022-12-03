@@ -15,9 +15,8 @@ public class Logout {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, passwd);
-			// Mysql은 기본 포트가 3306
 			System.out.println("---------------------");
-			System.out.println("로그 아웃 DB접속 성공");
+			System.out.println("로그아웃 DB 접근 성공");
 
 			String sql;
 			sql = "update login_check set log='logout' where client_id=?;";
@@ -32,7 +31,7 @@ public class Logout {
 			System.out.println("---------------------");
 			conn.close(); // 연결 끊기
 		} catch (Exception e) {
-			System.out.println("DB접속 오류 " + e);
+			System.out.println("DB  접속 오류" + e);
 		}
 
 	}
