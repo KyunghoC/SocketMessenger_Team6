@@ -208,9 +208,7 @@ public class FindPanel extends JFrame {
 						} catch (SQLException sqex) {
 							System.out.println("SQLException: " + sqex.getMessage());
 							System.out.println("SQLState: " + sqex.getSQLState());
-						}
-						catch (ClassNotFoundException e)
-						{
+						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
 

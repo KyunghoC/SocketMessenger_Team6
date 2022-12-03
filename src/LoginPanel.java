@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 
-public class LoginPanel extends JFrame { //로그인을 했을 경우 성공적인 경우와 비밀번호를 틀렸을 경우 중복로그인을 했을 경우로 나누게 됨
+public class LoginPanel extends JFrame { // 로그인을 했을 경우 성공적인 경우와 비밀번호를 틀렸을 경우 중복로그인을 했을 경우로 나누게 됨
 	// 그 후 상태의 메시지를 사용자에게 알리기 위한 GUI
 	Button checkBtn;
 	int check;
@@ -45,8 +45,8 @@ public class LoginPanel extends JFrame { //로그인을 했을 경우 성공적인 경우와 비
 	public class ExitButtonListener implements ActionListener { // ======================나가기
 		// 버튼
 		public void actionPerformed(ActionEvent event) {
-		
-				dispose(); // 해당 프레임만 끄기
+
+			dispose(); // 해당 프레임만 끄기
 
 		}
 	}

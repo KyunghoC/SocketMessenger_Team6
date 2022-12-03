@@ -10,159 +10,151 @@ import java.util.Map;
 
 import javax.swing.JScrollBar;
 
-
 public class New_Client {
-//·Î±×ÀÎ Tab°ú ¼­¹ö ¿¬°áÀ» ÇÏ±âÀ§ÇÑ Å¬¶óÀÌ¾ğÆ® ÇÁ·Î±×·¥ÀÇ ÁßÃßÀûÀÎ Å¬·¡½º
- private static String Client_Name; //»ç¿ëÀÚ ID
- //===============================================================¼­¹ö ¼³Á¤
- final static String SERVER_ADDR="127.0.0.1"; //ÀÚ¹Ù Ã¤ÆÃ ¼­¹ö ÁÖ¼Ò 
- public static  final String DBIP="localhost"; //DB Á¢¼Ó ¾ÆÀÌÇÇ ¼³Á¤
- final static int SERVER_PORT=52273; //ÀÚ¹Ù Ã¤ÆÃ¼­¹ö Æ÷Æ®¹øÈ£
- //===============================================================
- public static Socket socket; //¼­¹ö¿Í ¿¬°áÇÏ±â À§ÇÑ Æ÷Æ®
- public static PrintWriter pw; //¼­¹ö¿¡°Ô µ¥ÀÌÅÍ¸¦ ¾²±â À§ÇÑ È®Àå ½ºÆ®¸²
- public static volatile BufferedReader br; //¼­¹ö·Î ºÎÅÍ µ¥ÀÌÅÍ¸¦ ¹Ş±â À§ÇÑ ½ºÆ®¸²
- public static volatile InputStreamReader isr;
- private static Map<Integer, client_2> chat_room=new HashMap<>(); //´Ù¼öÀÇ ¹æÀ» È¿À²ÀûÀ¸·Î °ü¸®ÇÏ±â À§ÇÑ Äİ·º¼Ç
- /**
-  * @param args
-  * @throws IOException 
-  */
- New_Client() //±âº»ÀûÀ¸·Î ¸ŞÀÎ ·Î±×ÀÎ GUI¸¦ »ı¼º
- {
-	 new Tab();
-	 /*	
-	  * tab Å¬·¡½º¿¡¼­ ½ÂÀÎÇÏ¸é runClient()¸Ş¼Òµå°¡ ½ÇÇàµÊ tabÅ¬·¡½º¿¡¼­ runClient()½ÇÇà.
-     pw.println("52273#!login"); //·Î±×ÀÎÇßÀ» °æ¿ì
-      runClient(); //·Î±×ÀÎÀÌ Çã°¡°¡ ³ª¿Â ÈÄ ÀÛµ¿ÇÏ´Â ÇÔ¼ö
-      pw.println("52273#!logout"); //·Î±×¾Æ¿ô ±¸Çö
-       socket.close();
-     pw.println("Ting_Talk"); //·Î±×ÀÎ ÈÄ ID¸¦ ÀÔ·ÂÇØ¾ßµÊ
-     Client_Name="Ting_Talk";
-    
-     pw.println("52274#Ting_Talk3"); //´ëÈ­¿äÃ»
-     
-	  */
- }
- 
- static void runClient()
- {
-	 try {
-		   socket=new Socket(SERVER_ADDR,SERVER_PORT);
-		
-		   isr=new InputStreamReader(socket.getInputStream()); 
-		   br=new BufferedReader(isr); //¼­¹ö¿¡¼­ ¹Ş¾Æ¿À´Â ½ºÆ®¸²
-		   pw=new PrintWriter(socket.getOutputStream(),true); //¼­¹ö·Î º¸³»±â À§ÇÔ ½ºÆ®¸²
-		  } catch (IOException e) {
-		   // TODO Auto-generated catch block
-		   e.printStackTrace();
-		  } //¼ÒÄÏ ¿¬°á
-  try{
-   new Thread(new Runnable(){
+//ë¡œê·¸ì¸ Tabê³¼ ì„œë²„ ì—°ê²°ì„ í•˜ê¸°ìœ„í•œ í´ë¼ì´ì–¸íŠ¸ í”„ë¡œê·¸ë¨ì˜ ì¤‘ì¶”ì ì¸ í´ë˜ìŠ¤
+	private static String Client_Name; // ì‚¬ìš©ì ID
+	// ===============================================================ì„œë²„ ì„¤ì •
+	final static String SERVER_ADDR = "127.0.0.1"; // ìë°” ì±„íŒ… ì„œë²„ ì£¼ì†Œ
+	public static final String DBIP = "localhost"; // DB ì ‘ì† ì•„ì´í”¼ ì„¤ì •
+	final static int SERVER_PORT = 52273; // ìë°” ì±„íŒ…ì„œë²„ í¬íŠ¸ë²ˆí˜¸
+	// ===============================================================
+	public static Socket socket; // ì„œë²„ì™€ ì—°ê²°í•˜ê¸° ìœ„í•œ í¬íŠ¸
+	public static PrintWriter pw; // ì„œë²„ì—ê²Œ ë°ì´í„°ë¥¼ ì“°ê¸° ìœ„í•œ í™•ì¥ ìŠ¤íŠ¸ë¦¼
+	public static volatile BufferedReader br; // ì„œë²„ë¡œ ë¶€í„° ë°ì´í„°ë¥¼ ë°›ê¸° ìœ„í•œ ìŠ¤íŠ¸ë¦¼
+	public static volatile InputStreamReader isr;
+	private static Map<Integer, client_2> chat_room = new HashMap<>(); // ë‹¤ìˆ˜ì˜ ë°©ì„ íš¨ìœ¨ì ìœ¼ë¡œ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ì½œë ‰ì…˜
 
-    @Override
-    public void run() {
-     // TODO Auto-generated method stub
-    	//=======================================·Î±×ÀÎ Â÷¿¡¼­ ±¸Çö
-     pw.println("52273#!login"); //·Î±×ÀÎÇßÀ» °æ¿ì
-     pw.println(Client_Name); //·Î±×ÀÎ ÈÄ ID¸¦ ÀÔ·ÂÇØ¾ßµÊ
-   
-     while(true) //¹«ÇÑ·çÇÁ·Î ¿ÜºÎ¿¡¼­ ¿¬°áÇÏ´Â ¼ÒÄÏÀ» ¼­¹ö¿Í ¿¬°á
-     {
-      String line=null; //¹®ÀÚ¿­ ÃÊ±âÈ­
-      String [] temp={"","",""}; //¹®ÀÚ¹è¿­ ÃÊ±âÈ­
-       try {
-        line=br.readLine(); //¼­¹ö¿¡¼­ ¸Ş½ÃÁö°¡ µé¾î¿È
-        System.out.println("¼­¹ö¿¡¼­ µé¾î¿Â ¸Ş½ÃÁö"+line);
-       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        System.out.println("¼­¹ö¿Í Å¬¶óÀÌ¾ğÆ®°£ÀÇ ½ºÆ®¸² ¿À·ù");
-        e.printStackTrace();
-       }
-       
-       try{
-       temp=line.split("#"); //¼­¹ö¿¡¼­ µé¾î¿Â ¸Ş½ÃÁö¸¦ ºĞ¼®ÇÏ±â À§ÇØ ÂÉ°·.
-       }catch(Exception e){
-        System.out.println("Split ¿À·ù"); 
-        e.getMessage();
-        }
-       
-      if(temp[1].equals("!invite")) //´Ù¸¥ »ó´ë¹æÀ¸·ÎºÎÅÍ ÃÊ´ë¸¦ ¹Ş¾ÒÀ» °æ¿ì 
-      {
-       
-       System.out.println(line);
-        client_2 df2=new client_2();
-        int tempRoomNumber=Integer.parseInt(temp[0]); //ÃÊ´ë¹ŞÀº °æ¿ì ¹æ¹øÈ£¿Í °°ÀÌ ¸Ş½ÃÁö°¡ ¿É´Ï´Ù. 10#!invite Çü½ÄÀ¸·Î
-        df2.setRoomNumber(tempRoomNumber);  //¹æ¹øÈ£¸¦ ÇØ´ç ´ëÈ­Ã¢ GUIÀÇ ¹æ¹øÈ£ º¯¼ö¿¡ ÀúÀåÇÕ´Ï´Ù.
-        chat_room.put(tempRoomNumber, df2); //¹æÀÇ GUI¸¦ °ü¸®ÇÏ±â À§ÇØ ¹æ¹øÈ£¿Í GUI°´Ã¼¸¦ ÀúÀåÇÕ´Ï´Ù.
-        
-       
-      }
-      else if(temp[0].charAt(0)=='!')//x¹ø¹æÀÇ ´ëÈ­¸ñ·Ï ¸®½ºÆ®¸¦ ¼­¹ö¿¡¼­ ¹Ş¾Æ¿È !¹æ¹øÈ£#id1#id2#id3
-      {
-       
-       System.out.println("´ëÈ­¸ñ·ÏÀÌ ¿Ô¾î¿ä~~");
-       String[] users;
-      
-       users= line.substring(1).split("#");//´À³¦Ç¥¸¦ Á¦°ÅÇÏ°í °ø¹é¹®ÀÚ¿­·Î ¹®ÀÚ¿­µéÀ» ±¸ºĞÇÔ !¾ÆÀÌµğ1 ¾ÆÀÌµğ2 ¾ÆÀÌµğ3
-       String[] copyUsers=new String[10]; //´ëÈ­¸ñ·Ï
-       System.arraycopy(users, 1, copyUsers, 0, users.length-1); //º¹»çÇÒ ¹è¿­,º¹»ç ½ÃÀÛ ÀÎµ¦½º, ´ë»ó¹Ù¿­, º¹»çÇÒ °¹¼ö
-       //ÀÌ·¸°Ô ÇÏ´Â ÀÌÀ¯´Â ¼­¹ö¿¡¼­ Ä£±¸¸ñ·ÏÀ» ¹Ş¾Æ¿Ã¶§ ¹æ¹øÈ£±îÁö °°ÀÌ ¹­¾î¼­ ¿À¹Ç·Î ÀÎµ¦½º 0ÀÇ ÀÚ¸®¸¦ »©¾ßµÇ±â ‹š¹®ÀÌ´Ù.
-       int roomNum=Integer.parseInt(temp[0].substring(1));//ÇØ´ç¹æ¹øÈ£¸¦ ¹Ş¾Æ¿È
-      
-       client_2 temp1=chat_room.get(roomNum);//¹æ¹øÈ£¿¡ ¸Â´Â GUI¸¦ ºÒ·¯¿È
-       temp1.setChatList(copyUsers); //ÇØ´ç ¹æÀÇ GUI¿¡ Ä£±¸¸ñ·Ï ¼³Á¤
-      
-       
-      }//Ä£±¸¸ñ·Ï ºÒ·¯¿À±â ³¡
-      else{//¼­¹ö¿¡¼­ ¹Ş¾Æ¿Â ´Ù¸¥»ç¶÷µéÀÌ x¹ø¹æ¿¡ º¸³½ ¸Ş½ÃÁö
-       System.out.println(line);
-       int roomNum=Integer.parseInt(temp[0]); //¹æ¹øÈ£ µû¿È
-       client_2 temp1=chat_room.get(roomNum); //ÇØ´ç ¹æ¹øÈ£ÀÇ GUI °´Ã¼ °¡Á®¿È
-       temp1.out_ar.append(temp[1]+"\n"); //ÇØ´ç ¹æ¹øÈ£ÀÇ Ã¤ÆÃ¹æÀÇ GUI¿¡°Ô µ¥ÀÌÅÍ¸¦ ³ª¿­
-       JScrollBar scrollBar = temp1.qScroller.getVerticalScrollBar(); //½ºÅ©·ÑÀ» °ü¸®ÇÏ±â À§ÇÑ ½ºÅ©·Ñ »ı¼º
-       scrollBar.setValue(scrollBar.getMaximum()); //ÃÖ´ë À§Ä¡·Î ½ºÅ©·Ñ¹Ù¸¦ ¿Å±è
-      }
-      System.out.println("!!!!!!!!!!!!!!!!!!!!!");
-     }// while end
-    }}).start();
-  
-  }catch(NullPointerException e){
-   System.out.println("IO ERROR ::::: " +e.getMessage());
-   return;
-  }//catch end
- }
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
+	New_Client() // ê¸°ë³¸ì ìœ¼ë¡œ ë©”ì¸ ë¡œê·¸ì¸ GUIë¥¼ ìƒì„±
+	{
+		new Tab();
+		/*
+		 * tab í´ë˜ìŠ¤ì—ì„œ ìŠ¹ì¸í•˜ë©´ runClient()ë©”ì†Œë“œê°€ ì‹¤í–‰ë¨ tabí´ë˜ìŠ¤ì—ì„œ runClient()ì‹¤í–‰.
+		 * pw.println("52273#!login"); //ë¡œê·¸ì¸í–ˆì„ ê²½ìš° runClient(); //ë¡œê·¸ì¸ì´ í—ˆê°€ê°€ ë‚˜ì˜¨ í›„ ì‘ë™í•˜ëŠ” í•¨ìˆ˜
+		 * pw.println("52273#!logout"); //ë¡œê·¸ì•„ì›ƒ êµ¬í˜„ socket.close();
+		 * pw.println("Ting_Talk"); //ë¡œê·¸ì¸ í›„ IDë¥¼ ì…ë ¥í•´ì•¼ë¨ Client_Name="Ting_Talk";
+		 * 
+		 * pw.println("52274#Ting_Talk3"); //ëŒ€í™”ìš”ì²­
+		 * 
+		 */
+	}
 
- static public Map getMap()
- {
-  return chat_room; //¹æÀ» ³ª°¬À»¶§ GUI¿¡¼­ Á¢±ÙÇÒ ¼ö ÀÖ°Ô ³Ñ°ÜÁÜ
- }
- static public String getClientName()
- {
-  return Client_Name; //·Î±×ÀÎÇÑ ID »Ñ·ÁÁÜ
- }
- static public void setClientName(String tempName)
- {
-	 Client_Name=tempName;
- 
- }
- public static void main(String[] args) throws IOException {
-  // TODO Auto-generated method stub
+	static void runClient() {
+		try {
+			socket = new Socket(SERVER_ADDR, SERVER_PORT);
 
-  
- new New_Client();
- 
-  /*
-  pw.println("52273#!logout"); //¿ÏÀüÈ÷ ÇÁ·Î±×·¥À» ²¯À»°æ¿ì
-  pw.println("¹æ¹øÈ£#º¸³¾¸Ş½ÃÁö"); //ÀÏ¹İÀûÀ¸·Î ¹®ÀÚ¸¦ ÇØ´ç ¹æ¹øÈ£¿¡°Ô º¸³»°í ½ÍÀ»°æ¿ì
-  pw.println("ÇØ´ç¹æ¹øÈ£#!exit"); //ÇØ´ç ¹æÀ» ³ª°¥·Á°í ÇÒ °æ¿ì
-  pw.println("ÇØ´ç¹æ¹øÈ£#!invite"); //·Î±×ÀÎ ÈÄ Ã³À½À¸·Î ´ëÈ­ ¿äÃ»À» ¹Ş¾ÒÀ» °æ¿ì
-  pw.println("52274#Ting_Talk2"); //Ã³À½ Ä£±¸¿¡°Ô ¸»À» °É¾úÀ» °æ¿ì
-  pw.println("52275#Ting_Talk2#1"); //ÀÌ¹Ì µÎ¸íÀÖ´Â ¹æ¿¡¼­ ´Ù¸¥ »ç¶÷À» ÃÊ´ëÇÒ°æ¿ì
-  
-   */ 
-  
- }
+			isr = new InputStreamReader(socket.getInputStream());
+			br = new BufferedReader(isr); // ì„œë²„ì—ì„œ ë°›ì•„ì˜¤ëŠ” ìŠ¤íŠ¸ë¦¼
+			pw = new PrintWriter(socket.getOutputStream(), true); // ì„œë²„ë¡œ ë³´ë‚´ê¸° ìœ„í•¨ ìŠ¤íŠ¸ë¦¼
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // ì†Œì¼“ ì—°ê²°
+		try {
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					// =======================================ë¡œê·¸ì¸ ì°¨ì—ì„œ êµ¬í˜„
+					pw.println("52273#!login"); // ë¡œê·¸ì¸í–ˆì„ ê²½ìš°
+					pw.println(Client_Name); // ë¡œê·¸ì¸ í›„ IDë¥¼ ì…ë ¥í•´ì•¼ë¨
+
+					while (true) // ë¬´í•œë£¨í”„ë¡œ ì™¸ë¶€ì—ì„œ ì—°ê²°í•˜ëŠ” ì†Œì¼“ì„ ì„œë²„ì™€ ì—°ê²°
+					{
+						String line = null; // ë¬¸ìì—´ ì´ˆê¸°í™”
+						String[] temp = { "", "", "" }; // ë¬¸ìë°°ì—´ ì´ˆê¸°í™”
+						try {
+							line = br.readLine(); // ì„œë²„ì—ì„œ ë©”ì‹œì§€ê°€ ë“¤ì–´ì˜´
+							System.out.println("ì„œë²„ì—ì„œ ë“¤ì–´ì˜¨ ë©”ì‹œì§€" + line);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							System.out.println("ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ê°„ì˜ ìŠ¤íŠ¸ë¦¼ ì˜¤ë¥˜");
+							e.printStackTrace();
+						}
+
+						try {
+							temp = line.split("#"); // ì„œë²„ì—ì„œ ë“¤ì–´ì˜¨ ë©”ì‹œì§€ë¥¼ ë¶„ì„í•˜ê¸° ìœ„í•´ ìª¼ê°¬.
+						} catch (Exception e) {
+							System.out.println("Split ì˜¤ë¥˜");
+							e.getMessage();
+						}
+
+						if (temp[1].equals("!invite")) // ë‹¤ë¥¸ ìƒëŒ€ë°©ìœ¼ë¡œë¶€í„° ì´ˆëŒ€ë¥¼ ë°›ì•˜ì„ ê²½ìš°
+						{
+
+							System.out.println(line);
+							client_2 df2 = new client_2();
+							int tempRoomNumber = Integer.parseInt(temp[0]); // ì´ˆëŒ€ë°›ì€ ê²½ìš° ë°©ë²ˆí˜¸ì™€ ê°™ì´ ë©”ì‹œì§€ê°€ ì˜µë‹ˆë‹¤. 10#!invite í˜•ì‹ìœ¼ë¡œ
+							df2.setRoomNumber(tempRoomNumber); // ë°©ë²ˆí˜¸ë¥¼ í•´ë‹¹ ëŒ€í™”ì°½ GUIì˜ ë°©ë²ˆí˜¸ ë³€ìˆ˜ì— ì €ì¥í•©ë‹ˆë‹¤.
+							chat_room.put(tempRoomNumber, df2); // ë°©ì˜ GUIë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•´ ë°©ë²ˆí˜¸ì™€ GUIê°ì²´ë¥¼ ì €ì¥í•©ë‹ˆë‹¤.
+
+						} else if (temp[0].charAt(0) == '!')// xë²ˆë°©ì˜ ëŒ€í™”ëª©ë¡ ë¦¬ìŠ¤íŠ¸ë¥¼ ì„œë²„ì—ì„œ ë°›ì•„ì˜´ !ë°©ë²ˆí˜¸#id1#id2#id3
+						{
+
+							System.out.println("ëŒ€í™”ëª©ë¡ì´ ì™”ì–´ìš”~~");
+							String[] users;
+
+							users = line.substring(1).split("#");// ëŠë‚Œí‘œë¥¼ ì œê±°í•˜ê³  ê³µë°±ë¬¸ìì—´ë¡œ ë¬¸ìì—´ë“¤ì„ êµ¬ë¶„í•¨ !ì•„ì´ë””1 ì•„ì´ë””2 ì•„ì´ë””3
+							String[] copyUsers = new String[10]; // ëŒ€í™”ëª©ë¡
+							System.arraycopy(users, 1, copyUsers, 0, users.length - 1); // ë³µì‚¬í•  ë°°ì—´,ë³µì‚¬ ì‹œì‘ ì¸ë±ìŠ¤, ëŒ€ìƒë°”ì—´, ë³µì‚¬í• 
+																						// ê°¯ìˆ˜
+							// ì´ë ‡ê²Œ í•˜ëŠ” ì´ìœ ëŠ” ì„œë²„ì—ì„œ ì¹œêµ¬ëª©ë¡ì„ ë°›ì•„ì˜¬ë•Œ ë°©ë²ˆí˜¸ê¹Œì§€ ê°™ì´ ë¬¶ì–´ì„œ ì˜¤ë¯€ë¡œ ì¸ë±ìŠ¤ 0ì˜ ìë¦¬ë¥¼ ë¹¼ì•¼ë˜ê¸° ï¿½ï¿½ë¬¸ì´ë‹¤.
+							int roomNum = Integer.parseInt(temp[0].substring(1));// í•´ë‹¹ë°©ë²ˆí˜¸ë¥¼ ë°›ì•„ì˜´
+
+							client_2 temp1 = chat_room.get(roomNum);// ë°©ë²ˆí˜¸ì— ë§ëŠ” GUIë¥¼ ë¶ˆëŸ¬ì˜´
+							temp1.setChatList(copyUsers); // í•´ë‹¹ ë°©ì˜ GUIì— ì¹œêµ¬ëª©ë¡ ì„¤ì •
+
+						} // ì¹œêµ¬ëª©ë¡ ë¶ˆëŸ¬ì˜¤ê¸° ë
+						else {// ì„œë²„ì—ì„œ ë°›ì•„ì˜¨ ë‹¤ë¥¸ì‚¬ëŒë“¤ì´ xë²ˆë°©ì— ë³´ë‚¸ ë©”ì‹œì§€
+							System.out.println(line);
+							int roomNum = Integer.parseInt(temp[0]); // ë°©ë²ˆí˜¸ ë”°ì˜´
+							client_2 temp1 = chat_room.get(roomNum); // í•´ë‹¹ ë°©ë²ˆí˜¸ì˜ GUI ê°ì²´ ê°€ì ¸ì˜´
+							temp1.out_ar.append(temp[1] + "\n"); // í•´ë‹¹ ë°©ë²ˆí˜¸ì˜ ì±„íŒ…ë°©ì˜ GUIì—ê²Œ ë°ì´í„°ë¥¼ ë‚˜ì—´
+							JScrollBar scrollBar = temp1.qScroller.getVerticalScrollBar(); // ìŠ¤í¬ë¡¤ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ìŠ¤í¬ë¡¤ ìƒì„±
+							scrollBar.setValue(scrollBar.getMaximum()); // ìµœëŒ€ ìœ„ì¹˜ë¡œ ìŠ¤í¬ë¡¤ë°”ë¥¼ ì˜®ê¹€
+						}
+						System.out.println("!!!!!!!!!!!!!!!!!!!!!");
+					} // while end
+				}
+			}).start();
+
+		} catch (NullPointerException e) {
+			System.out.println("IO ERROR ::::: " + e.getMessage());
+			return;
+		} // catch end
+	}
+
+	static public Map getMap() {
+		return chat_room; // ë°©ì„ ë‚˜ê°”ì„ë•Œ GUIì—ì„œ ì ‘ê·¼í•  ìˆ˜ ìˆê²Œ ë„˜ê²¨ì¤Œ
+	}
+
+	static public String getClientName() {
+		return Client_Name; // ë¡œê·¸ì¸í•œ ID ë¿Œë ¤ì¤Œ
+	}
+
+	static public void setClientName(String tempName) {
+		Client_Name = tempName;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		new New_Client();
+
+		/*
+		 * pw.println("52273#!logout"); //ì™„ì „íˆ í”„ë¡œê·¸ë¨ì„ ê»ì„ê²½ìš° pw.println("ë°©ë²ˆí˜¸#ë³´ë‚¼ë©”ì‹œì§€");
+		 * //ì¼ë°˜ì ìœ¼ë¡œ ë¬¸ìë¥¼ í•´ë‹¹ ë°©ë²ˆí˜¸ì—ê²Œ ë³´ë‚´ê³  ì‹¶ì„ê²½ìš° pw.println("í•´ë‹¹ë°©ë²ˆí˜¸#!exit"); //í•´ë‹¹ ë°©ì„ ë‚˜ê°ˆë ¤ê³  í•  ê²½ìš°
+		 * pw.println("í•´ë‹¹ë°©ë²ˆí˜¸#!invite"); //ë¡œê·¸ì¸ í›„ ì²˜ìŒìœ¼ë¡œ ëŒ€í™” ìš”ì²­ì„ ë°›ì•˜ì„ ê²½ìš°
+		 * pw.println("52274#Ting_Talk2"); //ì²˜ìŒ ì¹œêµ¬ì—ê²Œ ë§ì„ ê±¸ì—ˆì„ ê²½ìš°
+		 * pw.println("52275#Ting_Talk2#1"); //ì´ë¯¸ ë‘ëª…ìˆëŠ” ë°©ì—ì„œ ë‹¤ë¥¸ ì‚¬ëŒì„ ì´ˆëŒ€í• ê²½ìš°
+		 * 
+		 */
+
+	}
 
 }
-

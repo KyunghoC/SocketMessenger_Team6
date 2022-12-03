@@ -35,6 +35,7 @@ public class Tab extends JFrame {
 	private TextField textField1, textField2;
 	private JPanel friendList;
 	JoinFrame jf;
+
 	public Tab() {
 		tab = new JTabbedPane();
 		p1 = new JPanel();
@@ -50,7 +51,6 @@ public class Tab extends JFrame {
 		bTab1 = new JButton("회원가입");
 		bTab1.setBackground(new Color(230, 110, 100));
 		bTab1.setForeground(new Color(255, 255, 255));
-		
 
 		for (int i = 0; i < 2; i++) { // 생성되어진 버튼에 액션리스너와 패널에 추가
 
