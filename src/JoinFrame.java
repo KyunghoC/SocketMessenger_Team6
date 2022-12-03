@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class JoinFrame extends JFrame {
 	/* Panel */
@@ -18,11 +19,9 @@ public class JoinFrame extends JFrame {
 	JButton joinBtn = new JButton("가입하기");
 	JButton cancelBtn = new JButton("가입취소");
 	
-	Operator o = null;
 	
-	JoinFrame(Operator _o) {
-		o = _o;
-		
+	JoinFrame() {
+
 		setTitle("회원가입");
 		
 		/* Label 크기 작업 */
@@ -58,6 +57,7 @@ public class JoinFrame extends JFrame {
 		setSize(250, 150);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setVisible(true);
 	}
 	
 	/* Button 이벤트 리스너 */
@@ -86,7 +86,7 @@ public class JoinFrame extends JFrame {
 				}
 				
 				else if(!uid.equals("") && !upass.equals("")) {
-					if(o.db.joinCheck(uid, upass)) {
+					if(joinCheck(uid, upass)) {
 						System.out.println("회원가입 성공");
 						JOptionPane.showMessageDialog(null, "회원가입에 성공하였습니다");
 						dispose();
@@ -99,5 +99,34 @@ public class JoinFrame extends JFrame {
 				}
 			}
 		}
+	}
+	
+	boolean joinCheck(String _i, String _p) {
+		boolean flag = false;
+		
+		String id = _i;
+		String pw = _p;
+		Connection con = null;
+		Statement stmt = null;
+		String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; //network 스키마
+		String user = "root"; // 데이터베이스 아이디
+		String passwd = "12345"; // 데이터베이스 비번
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(url, user, passwd);
+			stmt = con.createStatement();
+			String insertStr = "INSERT INTO client_list (client_id, client_password) VALUES('" + id + "', '" + pw + "')";
+			stmt.executeUpdate(insertStr);
+			insertStr = "INSERT INTO login_check VALUES('" + id + "', 'logout')";
+			stmt.executeUpdate(insertStr);
+			flag = true;
+			System.out.println("회원가입 성공");
+		} catch(Exception e) {
+			flag = false;
+			System.out.println("회원가입 실패 > " + e.toString());
+		}
+			
+		return flag;
 	}
 }
