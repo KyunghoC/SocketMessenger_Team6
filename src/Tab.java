@@ -155,7 +155,7 @@ public class Tab extends JFrame {
 				textField2.setText("");
 			} else {
 				new LoginPanel("로그인 중복 오류", 0);
-				System.out.println("이미 로그인되어 있습니다.");
+				System.out.println("아이디가 없거나 이미 로그인되어 있습니다.");
 				textField1.setText("");
 				textField2.setText("");
 			}

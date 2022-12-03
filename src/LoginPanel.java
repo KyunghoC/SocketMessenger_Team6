@@ -25,7 +25,7 @@ public class LoginPanel extends JFrame { // 로그인을 했을 경우 성공적인 경우와 �
 		Label lbl1;
 		checkBtn = new Button("확인");
 		if (i == 0) {
-			lbl1 = new Label("이미 로그인 되어있습니다.");
+			lbl1 = new Label("이미 로그인 되어있거나 없는 아이디입니다.");
 		} else if (i == 1) {
 			lbl1 = new Label("비밀번호를 잘못 입력하셨습니다.");
 		} else {
