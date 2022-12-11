@@ -25,7 +25,7 @@ class CommandC {
  
 public class Client extends JFrame{
     private JTextField textField;
-    private JButton selectImageButton;
+    private JButton selectFileButton;
     private JButton fileSendButton;
     private String filePath;
     public Client(){
@@ -36,15 +36,15 @@ public class Client extends JFrame{
         c.setLayout(new FlowLayout());
  
         textField = new JTextField(20);
-        selectImageButton = new JButton("파일 선택");
+        selectFileButton = new JButton("파일 선택");
         fileSendButton = new JButton("파일 전송");
  
         c.add(textField);
-        c.add(selectImageButton);
+        c.add(selectFileButton);
         c.add(fileSendButton);
  
         MyActionListener listener = new MyActionListener();
-        selectImageButton.addActionListener(listener);
+        selectFileButton.addActionListener(listener);
         fileSendButton.addActionListener(listener);
  
         setSize(300, 200);
@@ -59,7 +59,7 @@ public class Client extends JFrame{
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton)e.getSource();
  
-            if(btn == selectImageButton){
+            if(btn == selectFileButton){
             	
                 int ret = chooser.showOpenDialog(null);
                 if(ret != JFileChooser.APPROVE_OPTION){
