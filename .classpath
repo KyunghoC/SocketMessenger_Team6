@@ -6,6 +6,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-16.0.2/lib/mysql-connector-java-8.0.30.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hjd09/git/SocketMessenger_Team6/lib/json-simple-1.1.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/hjd09/git/SocketMessenger_Team6/lib/mysql-connector-java-8.0.30.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
