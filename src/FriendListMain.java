@@ -122,7 +122,7 @@ public class FriendListMain extends JFrame {
 						try {
 							String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 							String user = "root"; // 데이터베이스 아이디
-							String passwd = "1234"; // 데이터베이스 비번
+							String passwd = "12345"; // 데이터베이스 비번
 							Class.forName("com.mysql.cj.jdbc.Driver");
 							con1 = DriverManager.getConnection(url, user, passwd);
 
@@ -186,7 +186,7 @@ public class FriendListMain extends JFrame {
 					String SelFrdID = (String) FriendList.getSelectedValue();
 					String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 					String user = "root"; // 데이터베이스 아이디
-					String passwd = "1234"; // 데이터베이스 비번
+					String passwd = "12345"; // 데이터베이스 비번
 					if (!(SelFrdID == null)) {
 						try {
 							Class.forName("com.mysql.cj.jdbc.Driver");
@@ -248,7 +248,7 @@ public class FriendListMain extends JFrame {
 ///	        	  Connection con1 = null;
 					String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 					String user = "root"; // 데이터베이스 아이디
-					String passwd = "1234"; // 데이터베이스 비번
+					String passwd = "12345"; // 데이터베이스 비번
 					try {
 						Class.forName("com.mysql.cj.jdbc.Driver");
 						con1 = DriverManager.getConnection(url, user, passwd);
@@ -377,7 +377,7 @@ public class FriendListMain extends JFrame {
 								int i;
 								String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 								String user = "root"; // 데이터베이스 아이디
-								String passwd = "1234"; // 데이터베이스 비번
+								String passwd = "12345"; // 데이터베이스 비번
 
 								try {
 									Class.forName("com.mysql.cj.jdbc.Driver");

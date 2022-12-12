@@ -12,7 +12,7 @@ public class Login {
 		Connection conn;
 		String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 		String user = "root"; // 데이터베이스 아이디
-		String passwd = "1234"; // 데이터베이스 비번
+		String passwd = "12345"; // 데이터베이스 비번
 		final int WRONGPASSWORD = 1; // 잘못된 비밀번호일 경우
 		final int OVERLAPLOGIN = 0; // 중복 로그인 될 경우
 		final int SUCCESSLOGIN = 2; // 성공적인 로그인 경우

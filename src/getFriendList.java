@@ -12,7 +12,7 @@ public class getFriendList { // 대화창에서 친구목록을 불러오는 클
 		Connection conn;
 		String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 		String user = "root"; // 데이터베이스 아이디
-		String passwd = "1234"; // 데이터베이스 비번
+		String passwd = "12345"; // 데이터베이스 비번
 		String[] frList = new String[20];
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
