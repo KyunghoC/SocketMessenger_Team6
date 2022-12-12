@@ -1,10 +1,9 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Login {
-	// Tab에서 로그인 할 경우 ID와 Passwor를 확인과 중복로그인 여부 확인
-	/**
-	 * @param args
-	 */
+	// Tab에서 로그인 할 경우 ID와 Password를 확인과 중복로그인 여부 확인
+
 	public static int client_login(String client_id, String client_password) {
 		// TODO Auto-generated method stub
 		Connection conn;
