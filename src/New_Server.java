@@ -13,12 +13,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 public class New_Server {
 	// 클라이언트에게서 오는 데이터를 처리하고 전달 하기 위한 클래스 가장 중요한 역할
 	// 로그인, 로그아웃, 친구초대, 대화방, 대화방 참여 목록 관리 역할을 맡음.
-	/**
-	 * @param args
-	 */
+	
 	public LogClass log = new LogClass();
 	private final static int PORT_NO = 52273;
 	private ServerSocket listener; // 서버 소켓 생성
@@ -88,8 +88,8 @@ public class New_Server {
 							clientName = br.readLine();// 클라이언트의 ID를 받아옴
 							log.log_out(clientName + "로그인");// 로그 기록 남기기
 							System.out.println("로그인 성공");
-							// log.log_out(clientName+"로그인");//로그 기록 남기기
-							synchronized (client_all) {
+						
+							synchronized (client_all) { //동기화
 								client_all.put(this.getClientName(), this); // 회원의 ID를 키값 그리고 해당 회원의 쓰레드를 Value로 설정
 								System.out.println("접속" + client_all.get(this.clientName).getClientName());
 
@@ -98,7 +98,7 @@ public class New_Server {
 						case "!logout": // =======================================로그아웃
 							System.out.println(clientName + ":" + "LoGOUT"); // 결국 클라이언트가 연결을 해체하면 메시지가 나옴
 							log.log_out(clientName + "로그아웃");// 로그 기록 남기기
-							// log.log_out(clientName+"로그아웃");
+							
 							synchronized (client_all) {
 								Logout out = new Logout();
 								out.client_logout(this.getClientName()); // 데이터베이스에 로그아웃을 갱신
@@ -109,12 +109,14 @@ public class New_Server {
 						}// switch end
 					} else if (divisionNum == 52274)// 사용자가 누군가를 초대함 //============================================초대 기능
 					{
+						int chat = JOptionPane.showConfirmDialog(null,"대화를 수락하시겠습니까?", "대화 요청", JOptionPane.YES_NO_OPTION);
+						String chat2 = String.valueOf(chat);
 						synchronized (SERVER_GIVE_NUMBER) {
 							synchronized (client_all) {
 
 								if (!client_all.containsKey(division[1])) { // 키값을 찾아서 있는 경우 True이므로 !으로 역 으로 하여 폴스일 경우
-																			// True로 변경
-									send(division[1] + "님의 회원은 없습니다.");
+									send(chat2);										// True로 변경
+									//send(division[1] + "님의 회원은 없습니다.");
 									continue;
 								} // if end
 							} // sync end

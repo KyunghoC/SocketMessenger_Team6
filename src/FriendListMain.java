@@ -86,12 +86,21 @@ public class FriendListMain extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				Connection con1 = null;
+				
+				int chat = JOptionPane.showConfirmDialog(null,"대화를 수락하시겠습니까?", "대화 요청", JOptionPane.YES_NO_OPTION);
 
 				if (actionEvent.getActionCommand() == "대화하기") {
 
 					String inviteFriendID = (String) FriendList.getSelectedValue();
+					
 					if (!(inviteFriendID == null)) { // 초대할 사람이 공백이이 않을 경우 초대
-						New_Client.pw.println("52274#" + inviteFriendID); // 대화요청
+						New_Client.pw.println(chat);
+						
+						if(chat == JOptionPane.YES_OPTION) {
+							New_Client.pw.println("52274#" + inviteFriendID); // 대화요청
+						}
+						
+						
 						System.out.println("대화하기");
 					}
 				}

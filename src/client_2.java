@@ -35,7 +35,7 @@ public class client_2 extends JFrame { // 채팅프로램의 대화창에 관한
 	private int roomNumber = 0; // 각 자 생성되는 방번호. 방마다 방번호가 부여되고 다름.
 	String[] chattingList = new String[10]; // 해당방의 대화목록 나열
 	public static String str = ""; // 공통되는 메시지
-	// =================================================강문성 수정
+	
 	JButton send_bt, exit_bt; // 보내기 버튼 // 나가기 버튼
 	public JTextArea out_ar; // 채팅 메시지 결과창
 	JTextField in_tf; // 사용자가 보내고자 하는 문자열
@@ -46,16 +46,17 @@ public class client_2 extends JFrame { // 채팅프로램의 대화창에 관한
 	JPopupMenu pm2; // 팝업메뉴 변수 대화목록 눌렀을 시
 	LayerUI<JPanel> layuerUI;// 프로그램명 뜨게 하기
 	JScrollPane qScroller; // out_ar의 스크롤
+	
 	int scrollValue = 0;
 
 	public client_2() {
 
 		/////////////////////////////////////////////////////////// 왼쪽 패널 작업
 		west_p = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		west_p.setBackground(new Color(235, 235, 190));
+		west_p.setBackground(new Color(255, 255, 255));
 
 		// ************************************************************TextArea 수정
-		west_p.add(out_ar = new JTextArea(15, 15));
+		west_p.add(out_ar = new JTextArea(30, 23));
 		// **************************************************************
 		qScroller = new JScrollPane(out_ar); // 스크롤 생성
 		out_ar.setFocusable(false);
@@ -66,11 +67,11 @@ public class client_2 extends JFrame { // 채팅프로램의 대화창에 관한
 
 		/////////////////////////////////////////////////////////// 오른쪽 패널 작업
 		east_p = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		east_p.setBackground(new Color(235, 235, 190));
+		east_p.setBackground(new Color(255, 255, 255));
 		east_p.add(list = new JList(), "Center");
-		list.setFixedCellWidth(130);
+		list.setFixedCellWidth(70);
 		// ******************************************************list 수정
-		list.setFixedCellHeight(20);
+		list.setFixedCellHeight(30);
 		// ******************************************************
 		JScrollPane qScroller1 = new JScrollPane(list); // 스크롤 생성
 		qScroller1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -121,7 +122,9 @@ public class client_2 extends JFrame { // 채팅프로램의 대화창에 관한
 		this.add(south_p, BorderLayout.SOUTH);
 
 		// ****************************************************** 전체크기 수정
-		setSize(380, 350);
+		//setSize(380, 350);
+		setSize(400, 600);
+		
 		setResizable(false); // false 일때 크기 고정
 		// ***************************************************************
 		setVisible(true);

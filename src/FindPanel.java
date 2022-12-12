@@ -47,7 +47,7 @@ public class FindPanel extends JFrame {
 		JButton LogoutBtn = new JButton("로그 아웃");
 		LogoutBtn.setBackground(new Color(230, 110, 100));
 
-		FButton = new JButton("친구찾기"); // 버튼생성
+		FButton = new JButton("찾기"); // 버튼생성
 		FButton.setBackground(new Color(230, 110, 100));
 		txt1 = new JTextField(10); // 텍스트필드생성
 		FriendList = new JList(); // 리스트생성

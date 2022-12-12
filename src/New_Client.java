@@ -1,6 +1,7 @@
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -45,14 +46,16 @@ public class New_Client {
 	}
 
 	static void runClient() {
+		
 		try {
+			
 			socket = new Socket(SERVER_ADDR, SERVER_PORT);
 
 			isr = new InputStreamReader(socket.getInputStream());
 			br = new BufferedReader(isr); // 서버에서 받아오는 스트림
 			pw = new PrintWriter(socket.getOutputStream(), true); // 서버로 보내기 위함 스트림
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} // 소켓 연결
 		try {
@@ -60,7 +63,7 @@ public class New_Client {
 
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
+					
 					// =======================================로그인 차에서 구현
 					pw.println("52273#!login"); // 로그인했을 경우
 					pw.println(Client_Name); // 로그인 후 ID를 입력해야됨
@@ -69,11 +72,11 @@ public class New_Client {
 					{
 						String line = null; // 문자열 초기화
 						String[] temp = { "", "", "" }; // 문자배열 초기화
-						try {
+		 				try {
 							line = br.readLine(); // 서버에서 메시지가 들어옴
 							System.out.println("서버에서 들어온 메시지" + line);
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							System.out.println("서버와 클라이언트간의 스트림 오류");
 							e.printStackTrace();
 						}
