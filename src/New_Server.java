@@ -1,13 +1,10 @@
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -174,7 +171,7 @@ public class New_Server {
 							} // if end
 						}
 					} else { // ================================================================================해당
-								// 방에게만 메시지를 전송.
+						// 방에게만 메시지를 전송.
 						if (division[1].equals("!exit"))// ==================================방을 나갔을경우 방번호#!exit
 						{
 							synchronized (client_room_list) {
