@@ -1,4 +1,12 @@
-# SocketMessenger_Team6
-컴퓨터 네트워크 및 실습 Team Project 6조(소켓을 이용한 메신저 만들기)
-<br/>
-개발, 화이팅합시다
+# FastMessenger -Make a simple Chat by JAVA Socket, MySQL(JDBC)
+##### Actually non-fastest
+### Gachon University
+School of Computing Software Major<br />
+Computer Network & programming (14464_001) Fall 2022<br/>
+Instructor: Prof. Jaehyuk Choi (jchoi@gachon.ac.kr)
+
+---
+## Team 6
+
+- Java Back-end
+  - Jaedeok Han (202135593, hjd0907@gachon.ac.kr)
