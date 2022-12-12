@@ -20,7 +20,7 @@ public class Weather {
 							//(단기) 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4)
     public String setPTYForm(double PTY) {
     if(PTY==0) {
-    	PTYForm="맑음";
+    	PTYForm="맑음"; //강수형태 없음
     }
     else if(PTY==1) {
     	PTYForm="비";
@@ -57,10 +57,10 @@ public class Weather {
 
     @Override
     public String toString() {
-        return "locationCode = " + locationCode +
-                "\n날짜 = " + date.format(formatter1) +
+        return  "locationCode = " + locationCode +
+                "\n날짜 = " + date.format(formatter1)+
                 "\n시간 = " + time.format(formatter2) +
-                "\n강수형태 = " +setPTYForm(PTY)+
+                "\n오늘의 날씨 = " +setPTYForm(PTY)+
                 "\n습도 = " + REH +"(%)"+
                 "\n강수량 = " + RN1 +"(mm)"+
                 "\n기온 = " + T1H +"(℃)"+
@@ -68,6 +68,22 @@ public class Weather {
                 "\n풍속(남북) = " + VEC +"(m/s)"+
                 "\n풍향 = " + VVV +"(deg)"+
                 "\n풍속 = " + WSD +"(m/s)";
+    }
+    
+    public String toStringdate() {
+        return date.format(formatter1);       
+    }
+    public String toStringPTY() {
+        return "\n오늘의 날씨 : " +setPTYForm(PTY);
+    }
+    public String toStringREH() {
+        return "\n습도 : " + REH +"(%)";
+    }
+    public String toStringRN1() {
+        return "\n강수량 : " + RN1 +"(mm)";
+    }
+    public String toStringT1H() {
+        return "\n기온 : " + T1H +"(℃)";
     }
 
 	public void setPTY(double PTY) {
