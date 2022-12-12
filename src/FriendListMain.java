@@ -68,10 +68,11 @@ public class FriendListMain extends JFrame {
 
 					String inviteFriendID = (String) FriendList.getSelectedValue();
 
-					if (!(inviteFriendID == null)) { // 초대할 사람이 공백이이 않을 경우 초대
+					if (!(inviteFriendID == null)) { // 초대할 사람이 공백이지 않을 경우 초대
 						New_Client.pw.println(chat);
-
+						
 						if (chat == JOptionPane.YES_OPTION) {
+							
 							New_Client.pw.println("52274#" + inviteFriendID); // 대화요청
 						}
 

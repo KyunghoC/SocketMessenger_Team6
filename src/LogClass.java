@@ -13,20 +13,10 @@ public class LogClass {
 
 	public LogClass() {
 		try {
-			/*
-			 * String
-			 * url="D:\\�ű���2�г� ������==========\\KaKaOTikTalk_������Ʈ\\�ڵ�\\chat\\Main_Chatting\\logfile.txt"
-			 * ; in= new FileInputStream(url);
-			 * 
-			 * copy = new FileOutputStream("copy.txt"); byte [] temp= new byte[50];
-			 * while(true){ int count=0; try { count=in.read(temp); } catch (IOException e)
-			 * { // TODO Auto-generated catch block e.printStackTrace(); }
-			 * if(count==-1)break; try { copy.write(temp, 0, count); } catch (IOException e)
-			 * { // TODO Auto-generated catch block e.printStackTrace(); } }//while end
-			 */
+			
 			Calendar call = Calendar.getInstance();
 			int year = call.get(Calendar.YEAR);
-			int month = call.get(Calendar.MONTH);
+			int month = call.get(Calendar.MONTH)+1;
 			int day = call.get(Calendar.DATE);
 			int hour = call.get(Calendar.HOUR);
 			int minute = call.get(Calendar.MINUTE);
@@ -44,7 +34,7 @@ public class LogClass {
 	public void log_out(String str) {
 		Calendar call = Calendar.getInstance();
 		int year = call.get(Calendar.YEAR);
-		int month = call.get(Calendar.MONTH);
+		int month = call.get(Calendar.MONTH)+1;
 		int day = call.get(Calendar.DATE);
 		int hour = call.get(Calendar.HOUR);
 		int minute = call.get(Calendar.MINUTE);
