@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +11,7 @@ import javax.swing.JScrollBar;
 public class New_Client {
 //로그인 Tab과 서버 연결을 하기위한 클라이언트 프로그램의 중추적인 클래스
 	private static String Client_Name; // 사용자 ID
-	// ===============================================================서버 설정
+	// ===========================서버 설정===========================
 	final static String SERVER_ADDR = "127.0.0.1"; // 자바 채팅 서버 주소
 	public static final String DBIP = "localhost"; // DB 접속 아이피 설정
 	final static int SERVER_PORT = 52273; // 자바 채팅서버 포트번호

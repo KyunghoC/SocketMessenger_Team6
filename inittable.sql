@@ -4,7 +4,7 @@ use network;
 
 CREATE TABLE client_list (
     client_id VARCHAR(10),
-    client_password VARCHAR(100),
+    client_password VARCHAR(64),
     client_name VARCHAR(11),
     client_email VARCHAR(20),
     client_phone VARCHAR(13),

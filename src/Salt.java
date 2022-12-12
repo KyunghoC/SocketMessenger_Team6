@@ -3,7 +3,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 public class Salt {
-	public String[] encrypt(String pwd) {
+	public static String[] encrypt(String pwd) {
 		Salt en = new Salt();
 
 //		System.out.println("pwd : " + pwd);
@@ -18,6 +18,15 @@ public class Salt {
 		tmpStrings[0] = salt;
 		tmpStrings[1] = res;
 		return tmpStrings;
+	}
+
+	public String validate(String pwd, String salt) {
+		Salt en = new Salt();
+
+//		System.out.println("pwd : " + pwd);
+
+		String res = en.getEncrypt(pwd, salt);
+		return res;
 	}
 
 	public String getSalt() {

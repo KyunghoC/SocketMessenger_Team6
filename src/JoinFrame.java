@@ -1,7 +1,17 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class JoinFrame extends JFrame {
 	/* Panel */
@@ -105,6 +115,13 @@ public class JoinFrame extends JFrame {
 
 		String id = _i;
 		String pw = _p;
+		String[] encryptPW = Salt.encrypt(_p);
+		String salt = encryptPW[0];
+		pw = encryptPW[1];
+
+		// Server로 salt, PW 전송하기 전 ID validate.
+
+		// 존재하는 ID 없으면 salt, PW 전송하여 Join
 		Connection con = null;
 		Statement stmt = null;
 		String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
