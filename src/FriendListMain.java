@@ -1,5 +1,4 @@
 
-
 import javax.swing.event.*;
 
 import java.awt.*;
@@ -19,7 +18,6 @@ public class FriendListMain extends JFrame {
 
 	static JPanel getFriendListMain() {
 
-		// super("친구목록");
 		Login_ID = New_Client.getClientName();
 		final JPopupMenu FFindpopUp = new JPopupMenu();
 		FriendList = new JList();
@@ -31,8 +29,6 @@ public class FriendListMain extends JFrame {
 		Panel Buttom = new Panel();
 		Buttom.add(myInfo);
 		Buttom.add(Logout);
-		// Logout.add(new JLabel(new ImageIcon(getClass().getResource("1.jpg")))); // 로고
-		// 삽입
 
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new BorderLayout()); //
@@ -44,27 +40,6 @@ public class FriendListMain extends JFrame {
 
 		int f_count = 0;
 		Connection con = null;
-		/*
-		 * try {
-		 * 
-		 * con = DriverManager.getConnection("jdbc:mysql://localhost:3306/TingTalk",
-		 * "root", "dnfxmfk8"); PreparedStatement ps = null; ResultSet rs = null; String
-		 * sql = "select * from client_friend_list where client_id=?"; // String sql =
-		 * "select client_friend_list.friend_id, client_name, client_email, client_phone  from client_friend_list join client_list on(client_friend_list.friend_id = client_list.client_id) where client_friend_list.client_id like ?"
-		 * ; ps = con.prepareStatement(sql); ps.setString(1, Login_ID); // 자신의 아이디. rs =
-		 * ps.executeQuery();
-		 * 
-		 * while (rs.next()) { String str = rs.getString("friend_id"); // 출력할 정보(친구의
-		 * ID(또는 이름)) System.out.println(str);
-		 * 
-		 * Friend_ID[f_count] = str; f_count++; } }
-		 * 
-		 * catch (SQLException sqex) {
-		 * 
-		 * System.out.println("SQLException: " + sqex.getMessage());
-		 * System.out.println("SQLState: " + sqex.getSQLState()); }
-		 */
-		// FriendList.setListData(Friend_ID);
 
 		ActionListener LogoutAction = new ActionListener() { // 로그아웃 버튼 이벤트
 
@@ -86,21 +61,20 @@ public class FriendListMain extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				Connection con1 = null;
-				
-				int chat = JOptionPane.showConfirmDialog(null,"대화를 수락하시겠습니까?", "대화 요청", JOptionPane.YES_NO_OPTION);
+
+				int chat = JOptionPane.showConfirmDialog(null, "대화를 수락하시겠습니까?", "대화 요청", JOptionPane.YES_NO_OPTION);
 
 				if (actionEvent.getActionCommand() == "대화하기") {
 
 					String inviteFriendID = (String) FriendList.getSelectedValue();
-					
+
 					if (!(inviteFriendID == null)) { // 초대할 사람이 공백이이 않을 경우 초대
 						New_Client.pw.println(chat);
-						
-						if(chat == JOptionPane.YES_OPTION) {
+
+						if (chat == JOptionPane.YES_OPTION) {
 							New_Client.pw.println("52274#" + inviteFriendID); // 대화요청
 						}
-						
-						
+
 						System.out.println("대화하기");
 					}
 				}
@@ -116,8 +90,6 @@ public class FriendListMain extends JFrame {
 						String Friend_Name = null;
 						String Friend_Email = null;
 						String Friend_Phone = null;
-
-///	        	  Connection con1 = null;
 
 						try {
 							String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
@@ -151,7 +123,6 @@ public class FriendListMain extends JFrame {
 						}
 
 						JFrame a = new JFrame();
-						// BorderLayout f = new BorderLayout();
 
 						Label ShowFrdName = new Label(" 이름 : " + Friend_Name);
 						Label ShowFrdEmail = new Label(" E-mail : " + Friend_Email);
@@ -245,7 +216,6 @@ public class FriendListMain extends JFrame {
 					String My_Phone = null;
 					String My_password = null;
 
-///	        	  Connection con1 = null;
 					String url = "jdbc:mysql://localhost/network?serverTimezone=Asia/Seoul"; // network 스키마
 					String user = "root"; // 데이터베이스 아이디
 					String passwd = "12345"; // 데이터베이스 비번
@@ -447,10 +417,6 @@ public class FriendListMain extends JFrame {
 		FFindpopUp.add(DeleteFriend);
 
 		myInfo.addActionListener(actionListener);
-
-		// getContentPane().add(tabbedPane);
-		// setSize(500, 500);
-		// setVisible(true);
 
 		FriendList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {

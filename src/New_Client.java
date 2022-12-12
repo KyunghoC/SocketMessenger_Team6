@@ -2,11 +2,13 @@
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,29 +29,35 @@ public class New_Client {
 	public static volatile InputStreamReader isr;
 	private static Map<Integer, client_2> chat_room = new HashMap<>(); // 다수의 방을 효율적으로 관리하기 위한 콜렉션
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
+
 	New_Client() // 기본적으로 메인 로그인 GUI를 생성
 	{
 		new Tab();
-		/*
-		 * tab 클래스에서 승인하면 runClient()메소드가 실행됨 tab클래스에서 runClient()실행.
-		 * pw.println("52273#!login"); //로그인했을 경우 runClient(); //로그인이 허가가 나온 후 작동하는 함수
-		 * pw.println("52273#!logout"); //로그아웃 구현 socket.close();
-		 * pw.println("Ting_Talk"); //로그인 후 ID를 입력해야됨 Client_Name="Ting_Talk";
-		 * 
-		 * pw.println("52274#Ting_Talk3"); //대화요청
-		 * 
-		 */
+		
 	}
 
 	static void runClient() {
 		
 		try {
+			String server_ip = null;
+			String server_port = null;
+			File file = new File("server_info.dat"); // 파일 객체 생성
 			
-			socket = new Socket(SERVER_ADDR, SERVER_PORT);
+			if (file.exists() == true) { // server_info.dat이 있다면
+				FileReader filereader = new FileReader(file); // 입력 스트림 생성
+				BufferedReader buffReader = new BufferedReader(filereader); // 입력 버퍼 생성
+				String line = "";
+				ArrayList<String> ServerInfo = new ArrayList<>(); // array 생성
+				while ((line = buffReader.readLine()) != null) {
+					ServerInfo.add(line); // readLine()을 통해 array에 한줄씩 저장
+				}
+				server_ip = ServerInfo.get(0); // 첫째 줄
+				server_port = ServerInfo.get(1); // 둘째 줄
+				
+				buffReader.close();
+			}
+			
+			socket = new Socket(server_ip, Integer.parseInt(server_port)); // 소켓 정보
 
 			isr = new InputStreamReader(socket.getInputStream());
 			br = new BufferedReader(isr); // 서버에서 받아오는 스트림
