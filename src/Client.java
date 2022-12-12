@@ -25,8 +25,8 @@ class CommandC {
  
 public class Client extends JFrame{
     private JTextField textField;
-    private JButton selectFileButton;
-    private JButton fileSendButton;
+    private JButton selectFileButton; //파일 선택 버튼
+    private JButton fileSendButton; //파일 전송 버튼
     private String filePath;
     public Client(){
         super("파일 전송 클라이언트");
