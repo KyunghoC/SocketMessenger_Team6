@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -56,8 +55,6 @@ public class New_Server {
 		private volatile BufferedReader br;
 		private volatile PrintWriter pw;
 		private String clientName; // 입장한 회원이름
-		private String client_ip; // 접속한 회원의 ip
-		private InetAddress client_inet; // ip얻기 위한 객체 생성
 
 		Connection(Socket s) throws IOException {
 
@@ -89,7 +86,7 @@ public class New_Server {
 								System.out.println("접속" + client_all.get(this.clientName).getClientName());
 
 							}
-							break;
+
 						case "!logout": // =======================================로그아웃
 							System.out.println(clientName + ":" + "LoGOUT"); // 결국 클라이언트가 연결을 해체하면 메시지가 나옴
 							log.log_out(clientName + "로그아웃");// 로그 기록 남기기
@@ -199,8 +196,7 @@ public class New_Server {
 				System.out.println("ERROR 100: " + e.getMessage()); // 비 정상적으로 프로그램을 껐을 경우.
 				synchronized (client_all) {
 					log.log_out(clientName + "로그아웃");// 로그 기록 남기기
-					Logout out = new Logout();
-					out.client_logout(this.getClientName()); // 데이터베이스에 로그아웃을 갱신
+					Logout.client_logout(this.getClientName()); // 데이터베이스에 로그아웃을 갱신
 					client_all.remove(this.getClientName()); // 회원 관리에서 데이터에서 삭제
 
 				} // synchronized end

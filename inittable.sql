@@ -10,6 +10,8 @@ CREATE TABLE client_list (
     client_phone VARCHAR(13),
     client_nick VARCHAR(20),
     client_birth DATE,
+    stat_message VARCHAR(40),
+    last_connection DATETIME,
     salt VARCHAR(40),
     PRIMARY KEY (client_id)
 );
